@@ -6,8 +6,8 @@ let notificationsContainer = document.querySelector(
   ".jsNotificationsContainer"
 );
 
-// Create and add success notification on success button click
-successBtn.addEventListener("click", () => {
+// Generate/style/append elements and display/hide notification
+function generateElement(class1, class2, class3, class4, textContent) {
   // Create elements
   let notificationDiv = document.createElement("div");
   let iconDiv = document.createElement("div");
@@ -15,65 +15,19 @@ successBtn.addEventListener("click", () => {
   let para = document.createElement("p");
 
   // Style elements
-  notificationDiv.classList.add("success-notification");
-  iconDiv.classList.add("success-icon");
-  icon.classList.add("fa-solid", "fa-check");
+  notificationDiv.classList.add(`${class1}`);
+  iconDiv.classList.add(`${class2}`);
+  icon.classList.add(`${class3}`, `${class4}`);
 
   // Set text
-  para.textContent = "Successfully submitted";
+  para.textContent = `${textContent}`;
 
-  // Append together
   iconDiv.appendChild(icon);
   notificationsContainer.appendChild(notificationDiv).append(iconDiv, para);
 
-  displayHideNotification(notificationDiv);
-});
-
-// Create and add error notification on error button click
-errorBtn.addEventListener("click", () => {
-  // Create elements
-  let notificationDiv = document.createElement("div");
-  let iconDiv = document.createElement("div");
-  let icon = document.createElement("i");
-  let para = document.createElement("p");
-  // Style elements
-
-  notificationDiv.classList.add("error-notification");
-  iconDiv.classList.add("error-icon");
-  icon.classList.add("fa-solid", "fa-x");
-
-  // Set text
-  para.textContent = "Please fix the error!";
-
   // Append together
-  iconDiv.appendChild(icon);
-  notificationsContainer.appendChild(notificationDiv).append(iconDiv, para);
-
   displayHideNotification(notificationDiv);
-});
-
-// Create and add invalid notification on invalid button click
-invalidBtn.addEventListener("click", () => {
-  // Create elements
-  let notificationDiv = document.createElement("div");
-  let iconDiv = document.createElement("div");
-  let icon = document.createElement("i");
-  let para = document.createElement("p");
-
-  // Style elements
-  notificationDiv.classList.add("invalid-notification");
-  iconDiv.classList.add("invalid-icon");
-  icon.classList.add("fa-solid", "fa-exclamation");
-
-  // Set text
-  para.textContent = "Invalid input, check again";
-
-  // Append together
-  iconDiv.appendChild(icon);
-  notificationsContainer.appendChild(notificationDiv).append(iconDiv, para);
-
-  displayHideNotification(notificationDiv);
-});
+}
 
 // Displays notification first, then bottom bar timer, then removes both
 function displayHideNotification(div) {
@@ -87,3 +41,33 @@ function displayHideNotification(div) {
     div.classList.remove("visible", "notification");
   }, 3000);
 }
+
+successBtn.addEventListener("click", () => {
+  generateElement(
+    "success-notification",
+    "success-icon",
+    "fa-solid",
+    "fa-check",
+    "Successfully submitted"
+  );
+});
+
+errorBtn.addEventListener("click", () => {
+  generateElement(
+    "error-notification",
+    "error-icon",
+    "fa-solid",
+    "fa-x",
+    "Please fix the error!"
+  );
+});
+
+invalidBtn.addEventListener("click", () => {
+  generateElement(
+    "invalid-notification",
+    "invalid-icon",
+    "fa-solid",
+    "fa-exclamation",
+    "Invalid input, check again"
+  );
+});
