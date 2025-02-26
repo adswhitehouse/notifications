@@ -80,13 +80,13 @@ body {
 /* Notifications Container */
 .notifications-container {
   position: absolute;
-  right: 0;
+  right: 2rem;
   bottom: 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding-block: 2rem;
-  padding-right: 1rem;
+  padding-right: 0.5rem;
   overflow: hidden;
 }
 
@@ -116,7 +116,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   margin: 0.5rem;
 }
 
@@ -138,9 +137,11 @@ body {
 .invalid-notification::after {
   content: "";
   position: absolute;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 0.25rem;
   bottom: 0;
+  transition: right 2s;
 }
 
 .success-notification::after {
@@ -159,4 +160,9 @@ body {
 .visible {
   visibility: visible;
   left: 1%;
+}
+
+/* Animates::after classes */
+.notification::after {
+  right: 100%;
 }
